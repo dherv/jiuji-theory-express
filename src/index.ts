@@ -5,6 +5,8 @@ import cors from 'cors';
 import * as dotenv from 'dotenv';
 import express from 'express';
 import helmet from 'helmet';
+import morgan from 'morgan';
+import loggerStream from './config/winston';
 
 dotenv.config();
 
@@ -27,8 +29,11 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use(morgan('combined', { stream: loggerStream }));
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 
 /**
  * Server Activation
