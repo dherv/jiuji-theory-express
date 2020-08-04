@@ -1,3 +1,4 @@
+import compression from 'compression';
 import cors from 'cors';
 /**
  * Required External Modules
@@ -33,8 +34,8 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use(compression());
 app.use(morgan('combined', { stream: loggerStream }));
-app.use(Sentry.Handlers.requestHandler());
 
 // The request handler must be the first middleware on the app
 app.use(Sentry.Handlers.requestHandler());
