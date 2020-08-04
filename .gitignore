@@ -9,3 +9,6 @@
 
 # logs
 /logs
+
+# error
+yarn-error.log
