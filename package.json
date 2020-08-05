@@ -22,6 +22,8 @@
     "cypress": "cypress open"
   },
   "dependencies": {
+    "@prisma/cli": "^2.4.0",
+    "@prisma/client": "^2.4.0",
     "@sentry/node": "5.20.1",
     "@types/compression": "^1.7.0",
     "@types/cors": "^2.8.7",
