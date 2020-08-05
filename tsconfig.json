@@ -69,5 +69,5 @@
 
     "lib": ["esnext"]
   },
-  "include": ["src", ".eslintrc.js"]
+  "include": ["src", ".eslintrc.js", "config"]
 }

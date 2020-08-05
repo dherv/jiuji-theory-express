@@ -1,14 +1,11 @@
 import compression from 'compression';
 import cors from 'cors';
-/**
- * Required External Modules
- */
 import * as dotenv from 'dotenv';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import * as Sentry from '@sentry/node';
-import loggerStream from './config/winston';
+import loggerStream from '../config/winston';
 
 dotenv.config();
 Sentry.init({
