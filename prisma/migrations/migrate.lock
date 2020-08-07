@@ -1,3 +1,6 @@
 # Prisma Migrate lockfile v1
 
 20200805231524-init
+20200806133420-intro
+20200806140416-add-name-to-location
+20200806222821-add-name-to-club

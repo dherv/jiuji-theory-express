@@ -1,16 +1,14 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../node_modules/.prisma/client"
 }
 
 datasource mysql {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 model Club {
   id         Int       @default(autoincrement()) @id
-  name       String
   userId     Int
   locationId Int
   createdAt  DateTime  @default(now())
@@ -38,7 +36,6 @@ model Guard {
 
 model Location {
   id        Int      @default(autoincrement()) @id
-  name      String
   createdAt DateTime @default(now())
   updatedAt DateTime
   Club      Club[]
