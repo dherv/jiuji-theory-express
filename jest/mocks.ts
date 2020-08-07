@@ -1,4 +1,4 @@
-export const mockResults = {};
+export const mockResults = { data: 'mockResults' };
 export const mockService = {
   findOne: jest.fn().mockImplementation(() => Promise.resolve(mockResults)),
   findAll: jest.fn().mockImplementation(() => Promise.resolve(mockResults)),
@@ -22,9 +22,9 @@ export const mockArgs = {
 };
 
 export const mockRepository = {
-  findOne: jest.fn().mockImplementation(() => {}),
-  findAll: jest.fn().mockImplementation(() => [{ message: 'test findAll' }]),
-  create: jest.fn().mockImplementation(() => ({ message: 'test create' })),
-  update: jest.fn().mockImplementation(() => {}),
-  delete: jest.fn().mockImplementation(() => {}),
+  findOne: jest.fn().mockImplementation(() => ({ data: 'mockRepository' })),
+  findAll: jest.fn().mockImplementation(() => [{ data: 'mockRepository' }]),
+  create: jest.fn().mockImplementation(() => ({ data: 'mockRepository' })),
+  update: jest.fn().mockImplementation(() => ({ data: 'mockRepository' })),
+  delete: jest.fn().mockImplementation(() => ({ data: 'mockRepository' })),
 };

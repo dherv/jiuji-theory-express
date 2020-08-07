@@ -4,18 +4,29 @@ import usersController from './users.controller';
 
 afterEach(() => jest.clearAllMocks());
 
-test('it should return all users', () => {
+test('findAll() should return all users', () => {
   return usersController(mockService)
     .findAll(mockRequest, mockResponse, mockNext)
     .then((response: User[]) => {
       expect(mockService.findAll).toHaveBeenCalled();
       expect(mockResponse.json).toHaveBeenCalledWith({
-        users: {},
+        users: { data: 'mockResults' },
       });
       expect(response).toEqual({ data: {} });
     });
 });
-test('it should create one', () => {
+test('findOne() should return one user', () => {
+  return usersController(mockService)
+    .findOne(mockRequest, mockResponse, mockNext)
+    .then((response: User[]) => {
+      expect(mockService.findOne).toHaveBeenCalled();
+      expect(mockResponse.json).toHaveBeenCalledWith({
+        user: { data: 'mockResults' },
+      });
+      expect(response).toEqual({ data: {} });
+    });
+});
+test('create() should create one', () => {
   return usersController(mockService)
     .create(mockRequest, mockResponse, mockNext)
     .then((response: any) => {
@@ -23,7 +34,7 @@ test('it should create one', () => {
       expect(mockService.create).toHaveBeenCalledWith(body);
       expect(mockResponse.json).toHaveBeenCalledWith({
         message: 'created',
-        user: {},
+        user: { data: 'mockResults' },
       });
       expect(response).toEqual({ data: {} });
     });

@@ -3,21 +3,30 @@ import usersService from './users.service';
 
 afterEach(() => jest.clearAllMocks());
 
-test('it should return all users', () => {
+test('findAll() should return all users', () => {
   return usersService(mockRepository)
     .findAll()
     .then((data) => {
       expect(mockRepository.findAll).toHaveBeenCalled();
-      expect(data).toEqual([{ message: 'test findAll' }]);
+      expect(data).toEqual([{ data: 'mockRepository' }]);
     });
 });
 
-test('it should create one', () => {
+test('findOne() should return one user', () => {
+  return usersService(mockRepository)
+    .findOne(mockArgs.id)
+    .then((data) => {
+      expect(mockRepository.findOne).toHaveBeenCalled();
+      expect(data).toEqual({ data: 'mockRepository' });
+    });
+});
+
+test('create() should create one', () => {
   const { body } = mockArgs;
   return usersService(mockRepository)
     .create(body)
     .then((data) => {
       expect(mockRepository.create).toHaveBeenCalledWith(body);
-      expect(data).toEqual({ message: 'test create' });
+      expect(data).toEqual({ data: 'mockRepository' });
     });
 });
