@@ -12,7 +12,7 @@
     "serve:run": "yarn run serve",
     "start": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\"  \"yarn run watch-ts\" \"yarn run watch-node\"",
     "start:debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\"  \"yarn run watch-ts\" \"yarn run serve-debug\"",
-    "watch-node": "nodemon dist/index.js",
+    "watch-node": "nodemon dist/src/index.js",
     "watch-ts": "tsc -w",
     "prettier:check": "prettier --check src/**/*.ts",
     "prettier:write": "prettier --write src/**/*.ts",
