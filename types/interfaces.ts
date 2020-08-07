@@ -1,23 +1,37 @@
+import { NextFunction, Request, Response } from 'express';
+
 export interface IController {
-  findAll: (req: any, res: any, next: any) => Promise<any>;
-  findOne: (req: any, res: any, next: any) => Promise<any>;
-  create: (req: any, res: any, next: any) => Promise<any>;
-  update: (req: any, res: any, next: any) => Promise<any>;
-  delete: (req: any, res: any, next: any) => Promise<any>;
+  findAll: <T>(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => Promise<Response<T[]>>;
+  findOne: <T>(req: Request, res: Response, next: NextFunction) => Promise<T>;
+  create: <T>(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => Promise<Response<unknown>>;
+  update: <T>(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => Promise<{ message: string; data: T }>;
+  delete: <T>(req: Request, res: Response, next: NextFunction) => Promise<void>;
 }
 
 export interface IService {
-  findAll: () => Promise<any>;
-  findOne: (id: number) => Promise<any>;
-  create: (body: any) => Promise<any>;
-  update: (body: any, id: number) => Promise<any>;
-  delete: (id: number) => Promise<any>;
+  findAll: <T>() => Promise<T[]>;
+  findOne: <T>(id: number) => Promise<T>;
+  create: <B, T>(body: B) => Promise<T>;
+  update: <B, T>(body: B, id: number) => Promise<T>;
+  delete: (id: number) => Promise<void>;
 }
 
 export interface IRepository {
-  findAll: () => Promise<any>;
-  findOne: (id: number) => Promise<any>;
-  create: (body: any) => Promise<any>;
-  update: (body: any, id: number) => Promise<any>;
-  delete: (id: number) => Promise<any>;
+  findAll: <T>() => Promise<T[]>;
+  findOne: <T>(id: number) => Promise<T>;
+  create: <T>(body: any) => Promise<T>;
+  update: <T>(body: any, id: number) => Promise<T>;
+  delete: (id: number) => Promise<void>;
 }

@@ -1,19 +1,20 @@
 import { IRepository, IService } from '../../types/interfaces';
-import { CreateUserDto } from './dto/users.dto';
-import { User } from './types/users.types';
 
 const usersService = (usersRepository: IRepository): IService => {
   return {
-    findAll: async () => {
+    findAll: async <User>(): Promise<User[]> => {
       return await usersRepository.findAll();
     },
-    findOne: async (id: number) => {
+    findOne: async <User>(id: number): Promise<User> => {
       return await usersRepository.findOne(id);
     },
-    create: async (body: CreateUserDto): Promise<User> => {
+    create: async <User, CreateUserDto>(body: CreateUserDto): Promise<User> => {
       return await usersRepository.create(body);
     },
-    update: async (body: any, id: number): Promise<any> => {
+    update: async <User, CreateUserDto>(
+      body: CreateUserDto,
+      id: number
+    ): Promise<User> => {
       return await usersRepository.update(body, id);
     },
     delete: async (id: number) => {
