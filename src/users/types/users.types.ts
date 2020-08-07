@@ -7,10 +7,4 @@ export interface User {
   clubId?: number;
 }
 
-enum Belt {
-  WHITE,
-  BLUE,
-  PURPLE,
-  BROWN,
-  BLACK,
-}
+export type Belt = 'WHITE' | 'BLUE' | 'PURPLE' | 'BROWN' | 'BLACK';

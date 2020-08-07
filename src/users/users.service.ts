@@ -1,6 +1,6 @@
 import { IRepository, IService } from '../../types/interfaces';
 import { CreateUserDto } from './dto/users.dto';
-import { User } from './types/users.interface';
+import { User } from './types/users.types';
 
 const usersService = (usersRepository: IRepository): IService => {
   return {

@@ -1,14 +1,14 @@
 import { PrismaClient } from '@prisma/client';
 import { IRepository } from '../../types/interfaces';
 import { CreateUserDto } from './dto/users.dto';
-import { User } from './types/users.interface';
+import { User } from './types/users.types';
 
 const prisma = new PrismaClient();
 
 const usersRepository = (): IRepository => {
   return {
-    findAll: (): Promise<void> => {
-      return Promise.resolve();
+    findAll: async (): Promise<User[]> => {
+      return await prisma.user.findMany();
     },
     findOne: (id: number): Promise<void> => {
       return Promise.resolve();

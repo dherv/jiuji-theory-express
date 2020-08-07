@@ -22,9 +22,9 @@ export const mockArgs = {
 };
 
 export const mockRepository = {
-  findOne: jest.fn().mockImplementation(() => 2),
-  findAll: jest.fn().mockImplementation(() => 2),
-  create: jest.fn().mockImplementation(() => 2),
-  update: jest.fn().mockImplementation(() => 2),
-  delete: jest.fn().mockImplementation(() => 2),
+  findOne: jest.fn().mockImplementation(() => {}),
+  findAll: jest.fn().mockImplementation(() => [{ message: 'test findAll' }]),
+  create: jest.fn().mockImplementation(() => ({ message: 'test create' })),
+  update: jest.fn().mockImplementation(() => {}),
+  delete: jest.fn().mockImplementation(() => {}),
 };

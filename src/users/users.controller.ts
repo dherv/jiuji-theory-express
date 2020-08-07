@@ -1,11 +1,17 @@
-import { NextFunction, Response } from 'express';
+import { Request, Response } from 'express';
 import { IController, IService } from '../../types/interfaces';
 import { CreateUserDto } from './dto/users.dto';
 
 const usersControllers = (usersService: IService): IController => {
   return {
-    findAll: async () => {
-      return await Promise.resolve('hey');
+    findAll: async (req: Request, res: Response) => {
+      try {
+        const users = await usersService.findAll();
+        return res.json({ users });
+      } catch (error) {
+        console.error(error);
+        return res.json({ error });
+      }
     },
     findOne: async (req, res, next) => {
       return await usersService.findOne(req.params.id);
