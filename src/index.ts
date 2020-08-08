@@ -6,13 +6,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import * as Sentry from '@sentry/node';
 import loggerStream from '../config/winston';
-import usersControllerFactory from './users/users.controller';
-import usersRepositoryFactory from './users/users.repository';
-import usersServiceFactory from './users/users.service';
-
-const usersRepository = usersRepositoryFactory();
-const usersService = usersServiceFactory(usersRepository);
-const usersController = usersControllerFactory(usersService);
+import { usersRouter } from './users/users.router';
 
 dotenv.config();
 Sentry.init({
@@ -44,11 +38,7 @@ app.use(morgan('combined', { stream: loggerStream }));
 app.use(Sentry.Handlers.requestHandler());
 
 // API
-app.get('/v1/users', usersController.findAll);
-app.get('/v1/users/:id', usersController.findOne);
-app.post('/v1/users', usersController.create);
-app.put('/v1/users/:id', usersController.update);
-app.delete('/v1/users/:id', usersController.delete);
+app.use('/v1/users', usersRouter);
 
 // The error handler must be before any other error middleware and after all controllers
 app.use(Sentry.Handlers.errorHandler());
