@@ -4,24 +4,28 @@ export interface IController {
   findAll: <T>(
     req: Request,
     res: Response,
-    next: NextFunction
+    next?: NextFunction
   ) => Promise<Response<T[]>>;
   findOne: <T>(
     req: Request,
     res: Response,
-    next: NextFunction
+    next?: NextFunction
   ) => Promise<Response<T>>;
   create: <T>(
     req: Request,
     res: Response,
-    next: NextFunction
+    next?: NextFunction
   ) => Promise<Response<T>>;
   update: <T>(
     req: Request,
     res: Response,
-    next: NextFunction
+    next?: NextFunction
   ) => Promise<Response<Partial<T>>>;
-  delete: <T>(req: Request, res: Response, next: NextFunction) => Promise<void>;
+  delete: <T>(
+    req: Request,
+    res: Response,
+    next?: NextFunction
+  ) => Promise<void>;
 }
 
 export interface IService {

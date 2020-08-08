@@ -12,12 +12,12 @@ const usersControllers = (usersService: IService): IController => {
         return res.json({ error });
       }
     },
-    findOne: async <User>(req: Request, res: Response) => {
+    findOne: async (req: Request, res: Response) => {
       const {
         params: { id },
       } = req;
       try {
-        const user = await usersService.findOne<User>(Number(id));
+        const user = await usersService.findOne(Number(id));
         return res.json({ user });
       } catch (error) {
         console.error(error);

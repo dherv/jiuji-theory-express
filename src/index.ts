@@ -16,8 +16,7 @@ const usersController = usersControllerFactory(usersService);
 
 dotenv.config();
 Sentry.init({
-  dsn:
-    'https://1f810cd5f8774fb1873e49e94bfb1693@o424697.ingest.sentry.io/5374643',
+  dsn: process.env.SENTRY_KEY,
 });
 /**
  * App Variables

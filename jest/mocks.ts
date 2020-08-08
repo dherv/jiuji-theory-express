@@ -1,5 +1,3 @@
-import { Request } from 'express';
-
 export const mockResults = { data: 'mockResults' };
 export const mockService = {
   findOne: jest.fn().mockImplementation(() => Promise.resolve(mockResults)),
@@ -10,7 +8,7 @@ export const mockService = {
 };
 export const mockResponse = {
   status: jest.fn().mockReturnValue(200),
-  json: jest.fn().mockReturnValue({ data: 'json returned value' }),
+  json: jest.fn(),
 } as any;
 export const mockRequest = {
   params: { id: 1 },
