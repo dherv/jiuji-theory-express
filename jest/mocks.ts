@@ -1,4 +1,4 @@
-export const mockResults = {};
+export const mockResults = { data: 'mockResults' };
 export const mockService = {
   findOne: jest.fn().mockImplementation(() => Promise.resolve(mockResults)),
   findAll: jest.fn().mockImplementation(() => Promise.resolve(mockResults)),
@@ -8,13 +8,13 @@ export const mockService = {
 };
 export const mockResponse = {
   status: jest.fn().mockReturnValue(200),
-  json: jest.fn().mockReturnValue({ data: {} }),
-};
+  json: jest.fn(),
+} as any;
 export const mockRequest = {
   params: { id: 1 },
   body: {},
-};
-export const mockNext = {};
+} as any;
+export const mockNext = {} as any;
 
 export const mockArgs = {
   body: {},
@@ -22,9 +22,9 @@ export const mockArgs = {
 };
 
 export const mockRepository = {
-  findOne: jest.fn().mockImplementation(() => 2),
-  findAll: jest.fn().mockImplementation(() => 2),
-  create: jest.fn().mockImplementation(() => 2),
-  update: jest.fn().mockImplementation(() => 2),
-  delete: jest.fn().mockImplementation(() => 2),
+  findOne: jest.fn().mockImplementation(() => ({ data: 'mockRepository' })),
+  findAll: jest.fn().mockImplementation(() => [{ data: 'mockRepository' }]),
+  create: jest.fn().mockImplementation(() => ({ data: 'mockRepository' })),
+  update: jest.fn().mockImplementation(() => ({ data: 'mockRepository' })),
+  delete: jest.fn().mockImplementation(() => ({ data: 'mockRepository' })),
 };
