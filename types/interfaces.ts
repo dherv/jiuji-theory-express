@@ -6,17 +6,21 @@ export interface IController {
     res: Response,
     next: NextFunction
   ) => Promise<Response<T[]>>;
-  findOne: <T>(req: Request, res: Response, next: NextFunction) => Promise<T>;
+  findOne: <T>(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => Promise<Response<T>>;
   create: <T>(
     req: Request,
     res: Response,
     next: NextFunction
-  ) => Promise<Response<unknown>>;
+  ) => Promise<Response<T>>;
   update: <T>(
     req: Request,
     res: Response,
     next: NextFunction
-  ) => Promise<{ message: string; data: T }>;
+  ) => Promise<Response<Partial<T>>>;
   delete: <T>(req: Request, res: Response, next: NextFunction) => Promise<void>;
 }
 
@@ -24,14 +28,14 @@ export interface IService {
   findAll: <T>() => Promise<T[]>;
   findOne: <T>(id: number) => Promise<T>;
   create: <B, T>(body: B) => Promise<T>;
-  update: <B, T>(body: B, id: number) => Promise<T>;
+  update: <B, T>(body: B, id: number) => Promise<Partial<T>>;
   delete: (id: number) => Promise<void>;
 }
 
 export interface IRepository {
-  findAll: <T>() => Promise<T[]>;
-  findOne: <T>(id: number) => Promise<T>;
-  create: <T>(body: any) => Promise<T>;
-  update: <T>(body: any, id: number) => Promise<T>;
+  findAll: () => Promise<any>;
+  findOne: (id: number) => Promise<any>;
+  create: (body: any) => Promise<any>;
+  update: (body: any, id: number) => Promise<any>;
   delete: (id: number) => Promise<void>;
 }

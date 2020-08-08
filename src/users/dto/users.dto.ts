@@ -1,9 +1,9 @@
-import { Belt } from '../types/users.types';
+import { User_belt } from '@prisma/client';
 
 export interface CreateUserDto {
   name: string;
   email: string;
-  belt: Belt;
+  belt: User_belt;
   club: { id: number };
   location: { id: number };
 }

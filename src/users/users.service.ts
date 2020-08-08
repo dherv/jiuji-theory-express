@@ -14,7 +14,7 @@ const usersService = (usersRepository: IRepository): IService => {
     update: async <User, CreateUserDto>(
       body: CreateUserDto,
       id: number
-    ): Promise<User> => {
+    ): Promise<Partial<User>> => {
       return await usersRepository.update(body, id);
     },
     delete: async (id: number) => {

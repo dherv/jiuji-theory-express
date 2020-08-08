@@ -30,3 +30,13 @@ test('create() should create one', () => {
       expect(data).toEqual({ data: 'mockRepository' });
     });
 });
+
+test('update() should update one', () => {
+  const { body, id } = mockArgs;
+  return usersService(mockRepository)
+    .update(body, id)
+    .then((data) => {
+      expect(mockRepository.update).toHaveBeenCalledWith(body, id);
+      expect(data).toEqual({ data: 'mockRepository' });
+    });
+});

@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
 import { IController, IService } from '../../types/interfaces';
-import { User } from './types/users.types';
 
 const usersControllers = (usersService: IService): IController => {
   return {
-    findAll: async <User>(req: Request, res: Response) => {
+    findAll: async (_: Request, res: Response) => {
       try {
         const users = await usersService.findAll();
         return res.json({ users });
@@ -13,7 +12,7 @@ const usersControllers = (usersService: IService): IController => {
         return res.json({ error });
       }
     },
-    findOne: async (req: Request, res: Response) => {
+    findOne: async <User>(req: Request, res: Response) => {
       const {
         params: { id },
       } = req;
@@ -22,10 +21,10 @@ const usersControllers = (usersService: IService): IController => {
         return res.json({ user });
       } catch (error) {
         console.error(error);
-        return error;
+        return res.json({ error });
       }
     },
-    create: async <User>(req: Request, res: Response) => {
+    create: async (req: Request, res: Response) => {
       try {
         const { body } = req;
         const user = await usersService.create(body);
@@ -35,11 +34,21 @@ const usersControllers = (usersService: IService): IController => {
         return res.json({ error });
       }
     },
-    update: async <User>(req: Request, res: Response) => {
-      return await 'hey';
+    update: async (req: Request, res: Response) => {
+      try {
+        const {
+          body,
+          params: { id },
+        } = req;
+        const user = await usersService.update(body, Number(id));
+        return res.json({ message: 'updated', user });
+      } catch (error) {
+        console.error(error);
+        return res.json({ error });
+      }
     },
-    delete: async <User>(req: Request, res: Response) => {
-      return await 'hey';
+    delete: async () => {
+      return;
     },
   };
 };
