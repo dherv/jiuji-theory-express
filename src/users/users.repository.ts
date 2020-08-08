@@ -51,8 +51,10 @@ const usersRepository = (): IRepository => {
         },
       });
     },
-    delete: async (id: number): Promise<void> => {
-      return;
+    delete: async (id: number): Promise<User> => {
+      return await prisma.user.delete({
+        where: { id },
+      });
     },
   };
 };

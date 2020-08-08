@@ -1,31 +1,31 @@
 import { NextFunction, Request, Response } from 'express';
 
 export interface IController {
-  findAll: <T>(
+  findAll: (
     req: Request,
     res: Response,
     next?: NextFunction
-  ) => Promise<Response<T[]>>;
-  findOne: <T>(
+  ) => Promise<Response<any[]>>;
+  findOne: (
     req: Request,
     res: Response,
     next?: NextFunction
-  ) => Promise<Response<T>>;
-  create: <T>(
+  ) => Promise<Response<any>>;
+  create: (
     req: Request,
     res: Response,
     next?: NextFunction
-  ) => Promise<Response<T>>;
-  update: <T>(
+  ) => Promise<Response<any>>;
+  update: (
     req: Request,
     res: Response,
     next?: NextFunction
-  ) => Promise<Response<Partial<T>>>;
-  delete: <T>(
+  ) => Promise<Response<Partial<any>>>;
+  delete: (
     req: Request,
     res: Response,
     next?: NextFunction
-  ) => Promise<void>;
+  ) => Promise<Response<any>>;
 }
 
 export interface IService {
@@ -41,5 +41,5 @@ export interface IRepository {
   findOne: (id: number) => Promise<any>;
   create: (body: any) => Promise<any>;
   update: (body: any, id: number) => Promise<any>;
-  delete: (id: number) => Promise<void>;
+  delete: (id: number) => Promise<any>;
 }

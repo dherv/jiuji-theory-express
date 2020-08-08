@@ -47,8 +47,17 @@ const usersControllers = (usersService: IService): IController => {
         return res.json({ error });
       }
     },
-    delete: async () => {
-      return;
+    delete: async (req: Request, res: Response) => {
+      try {
+        const {
+          params: { id },
+        } = req;
+        const user = await usersService.delete(Number(id));
+        return res.json({ message: 'deleted', user });
+      } catch (error) {
+        console.error(error);
+        return res.json({ error });
+      }
     },
   };
 };

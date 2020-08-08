@@ -48,7 +48,7 @@ test('delete() should remove one', async () => {
   await usersController(mockService).delete(mockRequest, mockResponse);
   expect(mockService.delete).toHaveBeenCalledWith(id);
   expect(mockResponse.json).toHaveBeenCalledWith({
-    message: 'updated',
+    message: 'deleted',
     user: { data: 'mockResults' },
   });
 });
