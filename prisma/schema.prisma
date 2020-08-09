@@ -114,18 +114,16 @@ model User {
   id            Int             @default(autoincrement()) @id
   email         String          @unique
   name          String
+  password      String
   belt          User_belt       @default(WHITE)
-  locationId    Int
   started       DateTime        @default(now())
   createdAt     DateTime        @default(now())
-  Location      Location        @relation(fields: [locationId], references: [id])
+  Location      Location[]      @relation(references: [id])
   Club          Club[]          @relation(references: [id])
   Guard         Guard[]
   Submission    Submission[]
   TechniqueStep TechniqueStep[]
   Video         Video[]
-
-  @@index([locationId], name: "locationId")
 }
 
 model Video {

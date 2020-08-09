@@ -1693,6 +1693,13 @@
     {
       "tag": "CreateField",
       "model": "User",
+      "field": "password",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
       "field": "belt",
       "type": "User_belt",
       "arity": "Required"
@@ -1721,13 +1728,6 @@
       },
       "argument": "",
       "value": "WHITE"
-    },
-    {
-      "tag": "CreateField",
-      "model": "User",
-      "field": "locationId",
-      "type": "Int",
-      "arity": "Required"
     },
     {
       "tag": "CreateField",
@@ -1798,7 +1798,7 @@
       "model": "User",
       "field": "Location",
       "type": "Location",
-      "arity": "Required"
+      "arity": "List"
     },
     {
       "tag": "CreateDirective",
@@ -1810,20 +1810,6 @@
         },
         "directive": "relation"
       }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "User",
-          "field": "Location"
-        },
-        "directive": "relation"
-      },
-      "argument": "fields",
-      "value": "[locationId]"
     },
     {
       "tag": "CreateArgument",
@@ -1898,26 +1884,6 @@
       "field": "Video",
       "type": "Video",
       "arity": "List"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Model",
-          "model": "User",
-          "arguments": [
-            {
-              "name": "",
-              "value": "[locationId]"
-            },
-            {
-              "name": "name",
-              "value": "\"locationId\""
-            }
-          ]
-        },
-        "directive": "index"
-      }
     },
     {
       "tag": "CreateModel",

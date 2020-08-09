@@ -29,10 +29,10 @@ export interface IController {
 }
 
 export interface IService {
-  findAll: <T>() => Promise<T[]>;
-  findOne: <T>(id: number) => Promise<T>;
-  create: <B, T>(body: B) => Promise<T>;
-  update: <B, T>(body: B, id: number) => Promise<Partial<T>>;
+  findAll: () => Promise<any[]>;
+  findOne: (id: number) => Promise<any>;
+  create: (body: any) => Promise<any>;
+  update: (body: any, id: number) => Promise<Partial<any>>;
   delete: (id: number) => Promise<void>;
 }
 
@@ -42,4 +42,25 @@ export interface IRepository {
   create: (body: any) => Promise<any>;
   update: (body: any, id: number) => Promise<any>;
   delete: (id: number) => Promise<any>;
+}
+
+export interface IUserService extends IService {
+  findOneByEmailWithPassword: <T>(email: string) => Promise<T>;
+}
+export interface IUserRepository extends IRepository {
+  findOneByEmailWithPassword: (email: string) => Promise<any>;
+}
+export interface IBCryptService {
+  hash: (password: string | undefined) => Promise<string>;
+  compare: (password: string | undefined, hash: string) => Promise<boolean>;
+}
+export interface IJWTService {
+  sign: ({ username, sub }: { username: string; sub: number }) => Promise<any>;
+}
+export interface IAuthService {
+  validateUser: (user: any, pass: string) => Promise<any>;
+}
+export interface IAuthController {
+  register: (req: Request, res: Response) => Promise<Response<any[]>>;
+  login: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 }

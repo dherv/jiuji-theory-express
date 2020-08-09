@@ -6,6 +6,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import * as Sentry from '@sentry/node';
 import loggerStream from '../config/winston';
+import { authRouter } from './auth/auth.router';
+import passport from './auth/passport.strategies';
 import { usersRouter } from './users/users.router';
 
 dotenv.config();
@@ -27,18 +29,18 @@ const app = express();
 /**
  *  App Configuration
  */
-
+// The request handler must be the first middleware on the app
+app.use(Sentry.Handlers.requestHandler());
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(compression());
 app.use(morgan('combined', { stream: loggerStream }));
-
-// The request handler must be the first middleware on the app
-app.use(Sentry.Handlers.requestHandler());
+app.use(passport.initialize());
 
 // API
 app.use('/v1/users', usersRouter);
+app.use('/v1/auth', authRouter);
 
 // The error handler must be before any other error middleware and after all controllers
 app.use(Sentry.Handlers.errorHandler());

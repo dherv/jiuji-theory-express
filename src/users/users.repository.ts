@@ -1,36 +1,55 @@
-import { PrismaClient, User } from '@prisma/client';
-import { IRepository } from '../../types/interfaces';
-import { CreateUserDto } from './dto/users.dto';
+import { PrismaClient } from '@prisma/client';
+import { IBCryptService, IUserRepository } from '../../types/interfaces';
+import { CreateUserDto, UpdateUserDto } from './dto/users.dto';
+import { User } from './types/users.types';
 
 const prisma = new PrismaClient();
 
-const usersRepository = (): IRepository => {
+const usersRepository = (bCryptService: IBCryptService): IUserRepository => {
+  const select = {
+    id: true,
+    email: true,
+    name: true,
+    belt: true,
+    started: true,
+    createdAt: true,
+  };
   return {
     findAll: async (): Promise<User[]> => {
-      return await prisma.user.findMany();
+      return await prisma.user.findMany({ select: { ...select } });
     },
     findOne: async (id: number): Promise<User | null> => {
       return await prisma.user.findOne({
         where: { id },
+        select: { ...select },
       });
     },
-    create: async (body: CreateUserDto): Promise<User> => {
-      const { email, name, belt, location, club } = body;
-      return await prisma.user.create({
-        data: {
-          email: email,
-          name: name,
-          belt: belt,
-          Location: {
-            connect: { id: location.id },
-          },
-          Club: {
-            connect: { id: club.id },
-          },
+    findOneByEmailWithPassword: async (email: string): Promise<User | null> => {
+      return await prisma.user.findOne({
+        where: { email },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          belt: true,
+          password: true,
         },
       });
     },
-    update: async (body: CreateUserDto, id: number): Promise<Partial<User>> => {
+    create: async (body: CreateUserDto): Promise<User> => {
+      const { email, name, belt, password } = body;
+      const hash = await bCryptService.hash(password);
+      return await prisma.user.create({
+        data: {
+          name: name,
+          email: email,
+          password: hash,
+          belt: belt,
+        },
+        select: { ...select },
+      });
+    },
+    update: async (body: UpdateUserDto, id: number): Promise<Partial<User>> => {
       const { email, name, belt, location, club } = body;
       return await prisma.user.update({
         where: { id },
@@ -54,6 +73,7 @@ const usersRepository = (): IRepository => {
     delete: async (id: number): Promise<User> => {
       return await prisma.user.delete({
         where: { id },
+        select: { ...select },
       });
     },
   };
