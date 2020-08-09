@@ -50,16 +50,14 @@ const usersRepository = (bCryptService: IBCryptService): IUserRepository => {
       });
     },
     update: async (body: UpdateUserDto, id: number): Promise<Partial<User>> => {
-      const { email, name, belt, location, club } = body;
+      const { email, name, belt, club } = body;
       return await prisma.user.update({
         where: { id },
         data: {
           email: email,
           name: name,
           belt: belt,
-          Location: {
-            connect: { id: location.id },
-          },
+
           Club: {
             connect: { id: club.id },
           },

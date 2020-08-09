@@ -39,7 +39,6 @@ model Location {
   createdAt DateTime @default(now())
   updatedAt DateTime
   Club      Club[]
-  User      User[]
 }
 
 model Position {
@@ -118,7 +117,6 @@ model User {
   belt          User_belt       @default(WHITE)
   started       DateTime        @default(now())
   createdAt     DateTime        @default(now())
-  Location      Location[]      @relation(references: [id])
   Club          Club[]          @relation(references: [id])
   Guard         Guard[]
   Submission    Submission[]

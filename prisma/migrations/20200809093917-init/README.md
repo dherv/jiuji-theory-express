@@ -1,22 +1,26 @@
-# Migration `20200809021439-init`
+# Migration `20200809093917-init`
 
-This migration has been generated at 8/9/2020, 2:14:39 AM.
+This migration has been generated at 8/9/2020, 9:39:17 AM.
 You can check out the [state of the schema](./schema.prisma) after the migration.
 
 ## Database Steps
 
 ```sql
-ALTER TABLE `jiuji-theory`.`User` ADD COLUMN `password` varchar(191) NOT NULL ;
+ALTER TABLE `jiuji-theory`.`_LocationToUser` DROP FOREIGN KEY `_LocationToUser_ibfk_1`
+
+ALTER TABLE `jiuji-theory`.`_LocationToUser` DROP FOREIGN KEY `_LocationToUser_ibfk_2`
+
+DROP TABLE `jiuji-theory`.`_LocationToUser`;
 ```
 
 ## Changes
 
 ```diff
 diff --git schema.prisma schema.prisma
-migration ..20200809021439-init
+migration ..20200809093917-init
 --- datamodel.dml
 +++ datamodel.dml
-@@ -1,0 +1,154 @@
+@@ -1,0 +1,152 @@
 +generator client {
 +  provider = "prisma-client-js"
 +}
@@ -58,7 +62,6 @@ migration ..20200809021439-init
 +  createdAt DateTime @default(now())
 +  updatedAt DateTime
 +  Club      Club[]
-+  User      User[]
 +}
 +
 +model Position {
@@ -137,7 +140,6 @@ migration ..20200809021439-init
 +  belt          User_belt       @default(WHITE)
 +  started       DateTime        @default(now())
 +  createdAt     DateTime        @default(now())
-+  Location      Location[]      @relation(references: [id])
 +  Club          Club[]          @relation(references: [id])
 +  Guard         Guard[]
 +  Submission    Submission[]
