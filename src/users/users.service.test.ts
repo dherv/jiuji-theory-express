@@ -1,5 +1,10 @@
-import { mockArgs, mockRepository } from '../../jest/mocks';
+import { mockArgs, mockRepository as baseMockRepository } from '../../jest/mocks';
 import usersService from './users.service';
+
+const mockRepository = {
+  ...baseMockRepository,
+  findByEmail: jest.fn().mockImplementation(() => ({ data: 'mockRepository' })),
+};
 
 afterEach(() => jest.clearAllMocks());
 

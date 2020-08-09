@@ -1,11 +1,13 @@
-import express from 'express';
+import { Router } from 'express';
+import bCryptServiceFactory from '../auth/bcrypt.service';
 import usersControllerFactory from './users.controller';
 import usersRepositoryFactory from './users.repository';
 import usersServiceFactory from './users.service';
 
-export const usersRouter = express.Router();
+export const usersRouter = Router();
 
-const usersRepository = usersRepositoryFactory();
+const bCryptService = bCryptServiceFactory();
+const usersRepository = usersRepositoryFactory(bCryptService);
 const usersService = usersServiceFactory(usersRepository);
 const usersController = usersControllerFactory(usersService);
 

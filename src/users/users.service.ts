@@ -1,6 +1,8 @@
-import { IRepository, IService } from '../../types/interfaces';
+import { IUserRepository, IUserService } from '../../types/interfaces';
+import { CreateUserDto } from './dto/users.dto';
+import { User } from './types/users.types';
 
-const usersService = (usersRepository: IRepository): IService => {
+const usersService = (usersRepository: IUserRepository): IUserService => {
   return {
     findAll: async <User>(): Promise<User[]> => {
       return await usersRepository.findAll();
@@ -8,7 +10,10 @@ const usersService = (usersRepository: IRepository): IService => {
     findOne: async <User>(id: number): Promise<User> => {
       return await usersRepository.findOne(id);
     },
-    create: async <User, CreateUserDto>(body: CreateUserDto): Promise<User> => {
+    findOneByEmailWithPassword: async <User>(email: string): Promise<User> => {
+      return await usersRepository.findOneByEmailWithPassword(email);
+    },
+    create: async (body: CreateUserDto): Promise<User> => {
       return await usersRepository.create(body);
     },
     update: async <User, CreateUserDto>(
