@@ -1,9 +1,14 @@
-import { mockArgs, mockRepository as baseMockRepository } from '../../jest/mocks';
+import {
+  mockRepository as baseMockRepository,
+  mockRequest,
+} from '../../jest/mocks';
 import usersService from './users.service';
 
 const mockRepository = {
   ...baseMockRepository,
-  findByEmail: jest.fn().mockImplementation(() => ({ data: 'mockRepository' })),
+  findOneByEmailWithPassword: jest
+    .fn()
+    .mockImplementation(() => ({ data: 'mockRepository' })),
 };
 
 afterEach(() => jest.clearAllMocks());
@@ -15,27 +20,35 @@ test('findAll() should return all', async () => {
 });
 
 test('findOne() should return one', async () => {
-  const data = await usersService(mockRepository).findOne(mockArgs.id);
-  expect(mockRepository.findOne).toHaveBeenCalled();
+  const {
+    params: { id },
+  } = mockRequest;
+  const data = await usersService(mockRepository).findOne(id);
+  expect(mockRepository.findOne).toHaveBeenCalledWith(id);
   expect(data).toEqual({ data: 'mockRepository' });
 });
 
 test('create() should create one', async () => {
-  const { body } = mockArgs;
+  const { body } = mockRequest;
   const data = await usersService(mockRepository).create(body);
   expect(mockRepository.create).toHaveBeenCalledWith(body);
   expect(data).toEqual({ data: 'mockRepository' });
 });
 
 test('update() should update one', async () => {
-  const { body, id } = mockArgs;
+  const {
+    body,
+    params: { id },
+  } = mockRequest;
   const data = await usersService(mockRepository).update(body, id);
   expect(mockRepository.update).toHaveBeenCalledWith(body, id);
   expect(data).toEqual({ data: 'mockRepository' });
 });
 
 test('delete() should delete one', async () => {
-  const { id } = mockArgs;
+  const {
+    params: { id },
+  } = mockRequest;
   const data = await usersService(mockRepository).delete(id);
   expect(mockRepository.delete).toHaveBeenCalledWith(id);
   expect(data).toEqual({ data: 'mockRepository' });

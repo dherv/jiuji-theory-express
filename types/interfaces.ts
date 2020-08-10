@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { ReqUser } from '../src/users/types/users.types';
 
 export interface IController {
   findAll: (
@@ -31,23 +32,27 @@ export interface IController {
 export interface IService {
   findAll: () => Promise<any[]>;
   findOne: (id: number) => Promise<any>;
-  create: (body: any) => Promise<any>;
-  update: (body: any, id: number) => Promise<Partial<any>>;
+  create: (body: any, user: ReqUser) => Promise<any>;
+  update: (body: any, id: number, user: ReqUser) => Promise<Partial<any>>;
   delete: (id: number) => Promise<void>;
 }
 
 export interface IRepository {
   findAll: () => Promise<any>;
   findOne: (id: number) => Promise<any>;
-  create: (body: any) => Promise<any>;
-  update: (body: any, id: number) => Promise<any>;
+  create: (body: any, user: ReqUser) => Promise<any>;
+  update: (body: any, id: number, user: ReqUser) => Promise<any>;
   delete: (id: number) => Promise<any>;
 }
 
 export interface IUserService extends IService {
+  create: (body: any) => Promise<any>;
+  update: (body: any, id: number) => Promise<Partial<any>>;
   findOneByEmailWithPassword: <T>(email: string) => Promise<T>;
 }
 export interface IUserRepository extends IRepository {
+  create: (body: any) => Promise<any>;
+  update: (body: any, id: number) => Promise<any>;
   findOneByEmailWithPassword: (email: string) => Promise<any>;
 }
 export interface IBCryptService {
@@ -55,10 +60,10 @@ export interface IBCryptService {
   compare: (password: string | undefined, hash: string) => Promise<boolean>;
 }
 export interface IJWTService {
-  sign: ({ username, sub }: { username: string; sub: number }) => Promise<any>;
+  sign: ({ username, sub }: ReqUser) => Promise<any>;
 }
 export interface IAuthService {
-  validateUser: (user: any, pass: string) => Promise<any>;
+  validateUser: (user: Express.User, pass: string) => Promise<any>;
 }
 export interface IAuthController {
   register: (req: Request, res: Response) => Promise<Response<any[]>>;

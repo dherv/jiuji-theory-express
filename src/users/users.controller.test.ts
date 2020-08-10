@@ -12,8 +12,11 @@ test('findAll() should return all', async () => {
 });
 
 test('findOne() should return one', async () => {
+  const {
+    params: { id },
+  } = mockRequest;
   await usersController(mockService).findOne(mockRequest, mockResponse);
-  expect(mockService.findOne).toHaveBeenCalled();
+  expect(mockService.findOne).toHaveBeenCalledWith(id);
   expect(mockResponse.json).toHaveBeenCalledWith({
     user: { data: 'mockResults' },
   });
