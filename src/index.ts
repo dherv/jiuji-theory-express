@@ -9,6 +9,7 @@ import loggerStream from '../config/winston';
 import { authRouter } from './auth/auth.router';
 import passport from './auth/passport.strategies';
 import clubsRouter from './clubs/clubs.router';
+import teachersRouter from './teachers/teachers.router';
 import { usersRouter } from './users/users.router';
 
 dotenv.config();
@@ -46,6 +47,11 @@ app.use(
   '/v1/clubs',
   passport.authenticate('jwt', { session: false }),
   clubsRouter
+);
+app.use(
+  '/v1/teachers',
+  passport.authenticate('jwt', { session: false }),
+  teachersRouter
 );
 
 // The error handler must be before any other error middleware and after all controllers
