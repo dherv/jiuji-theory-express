@@ -9,6 +9,7 @@ import loggerStream from '../config/winston';
 import { authRouter } from './auth/auth.router';
 import passport from './auth/passport.strategies';
 import clubsRouter from './clubs/clubs.router';
+import submissionsRouter from './submissions/submissions.router';
 import teachersRouter from './teachers/teachers.router';
 import { usersRouter } from './users/users.router';
 
@@ -52,6 +53,11 @@ app.use(
   '/v1/teachers',
   passport.authenticate('jwt', { session: false }),
   teachersRouter
+);
+app.use(
+  '/v1/submissions',
+  passport.authenticate('jwt', { session: false }),
+  submissionsRouter
 );
 
 // The error handler must be before any other error middleware and after all controllers
