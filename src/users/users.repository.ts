@@ -57,8 +57,7 @@ const usersRepository = (bCryptService: IBCryptService): IUserRepository => {
           email: email,
           name: name,
           belt: belt,
-
-          Club: {
+          club: {
             connect: { id: club.id },
           },
         },

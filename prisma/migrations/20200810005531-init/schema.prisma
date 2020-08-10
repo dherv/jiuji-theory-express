@@ -1,11 +1,12 @@
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["connectOrCreate"]
+
 }
 
 datasource mysql {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 model Club {

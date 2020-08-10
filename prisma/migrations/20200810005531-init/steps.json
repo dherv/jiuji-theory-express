@@ -106,6 +106,13 @@
     {
       "tag": "CreateField",
       "model": "Club",
+      "field": "userId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Club",
       "field": "createdAt",
       "type": "DateTime",
       "arity": "Required"
@@ -143,9 +150,34 @@
       "arity": "Required"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Club",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Club",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
+    },
+    {
       "tag": "CreateField",
       "model": "Club",
-      "field": "Location",
+      "field": "location",
       "type": "Location",
       "arity": "Required"
     },
@@ -155,7 +187,7 @@
         "path": {
           "tag": "Field",
           "model": "Club",
-          "field": "Location"
+          "field": "location"
         },
         "directive": "relation"
       }
@@ -167,7 +199,7 @@
         "path": {
           "tag": "Field",
           "model": "Club",
-          "field": "Location"
+          "field": "location"
         },
         "directive": "relation"
       },
@@ -181,7 +213,7 @@
         "path": {
           "tag": "Field",
           "model": "Club",
-          "field": "Location"
+          "field": "location"
         },
         "directive": "relation"
       },
@@ -191,9 +223,9 @@
     {
       "tag": "CreateField",
       "model": "Club",
-      "field": "User",
+      "field": "user",
       "type": "User",
-      "arity": "List"
+      "arity": "Required"
     },
     {
       "tag": "CreateDirective",
@@ -201,7 +233,7 @@
         "path": {
           "tag": "Field",
           "model": "Club",
-          "field": "User"
+          "field": "user"
         },
         "directive": "relation"
       }
@@ -213,7 +245,21 @@
         "path": {
           "tag": "Field",
           "model": "Club",
-          "field": "User"
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Club",
+          "field": "user"
         },
         "directive": "relation"
       },
@@ -223,7 +269,7 @@
     {
       "tag": "CreateField",
       "model": "Club",
-      "field": "Teacher",
+      "field": "teachers",
       "type": "Teacher",
       "arity": "List"
     },
@@ -355,9 +401,34 @@
       "arity": "Required"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Guard",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Guard",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
+    },
+    {
       "tag": "CreateField",
       "model": "Guard",
-      "field": "User",
+      "field": "user",
       "type": "User",
       "arity": "Required"
     },
@@ -367,7 +438,7 @@
         "path": {
           "tag": "Field",
           "model": "Guard",
-          "field": "User"
+          "field": "user"
         },
         "directive": "relation"
       }
@@ -379,7 +450,7 @@
         "path": {
           "tag": "Field",
           "model": "Guard",
-          "field": "User"
+          "field": "user"
         },
         "directive": "relation"
       },
@@ -393,7 +464,7 @@
         "path": {
           "tag": "Field",
           "model": "Guard",
-          "field": "User"
+          "field": "user"
         },
         "directive": "relation"
       },
@@ -403,7 +474,7 @@
     {
       "tag": "CreateField",
       "model": "Guard",
-      "field": "Technique",
+      "field": "techniques",
       "type": "Technique",
       "arity": "List"
     },
@@ -484,6 +555,13 @@
     {
       "tag": "CreateField",
       "model": "Location",
+      "field": "userId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Location",
       "field": "createdAt",
       "type": "DateTime",
       "arity": "Required"
@@ -521,11 +599,82 @@
       "arity": "Required"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Location",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Location",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
+    },
+    {
       "tag": "CreateField",
       "model": "Location",
-      "field": "Club",
+      "field": "clubs",
       "type": "Club",
       "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Location",
+      "field": "user",
+      "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Location",
+          "field": "user"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Location",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Location",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
     },
     {
       "tag": "CreateModel",
@@ -609,7 +758,7 @@
     {
       "tag": "CreateField",
       "model": "Position",
-      "field": "Technique",
+      "field": "techniques",
       "type": "Technique",
       "arity": "List"
     },
@@ -721,9 +870,34 @@
       "arity": "Required"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Submission",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Submission",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
+    },
+    {
       "tag": "CreateField",
       "model": "Submission",
-      "field": "User",
+      "field": "user",
       "type": "User",
       "arity": "Required"
     },
@@ -733,7 +907,7 @@
         "path": {
           "tag": "Field",
           "model": "Submission",
-          "field": "User"
+          "field": "user"
         },
         "directive": "relation"
       }
@@ -745,7 +919,7 @@
         "path": {
           "tag": "Field",
           "model": "Submission",
-          "field": "User"
+          "field": "user"
         },
         "directive": "relation"
       },
@@ -759,7 +933,7 @@
         "path": {
           "tag": "Field",
           "model": "Submission",
-          "field": "User"
+          "field": "user"
         },
         "directive": "relation"
       },
@@ -769,7 +943,7 @@
     {
       "tag": "CreateField",
       "model": "Submission",
-      "field": "Technique",
+      "field": "techniques",
       "type": "Technique",
       "arity": "List"
     },
@@ -857,6 +1031,13 @@
     {
       "tag": "CreateField",
       "model": "Teacher",
+      "field": "userId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Teacher",
       "field": "createdAt",
       "type": "DateTime",
       "arity": "Required"
@@ -894,9 +1075,34 @@
       "arity": "Required"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Teacher",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Teacher",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
+    },
+    {
       "tag": "CreateField",
       "model": "Teacher",
-      "field": "Club",
+      "field": "club",
       "type": "Club",
       "arity": "Required"
     },
@@ -906,7 +1112,7 @@
         "path": {
           "tag": "Field",
           "model": "Teacher",
-          "field": "Club"
+          "field": "club"
         },
         "directive": "relation"
       }
@@ -918,7 +1124,7 @@
         "path": {
           "tag": "Field",
           "model": "Teacher",
-          "field": "Club"
+          "field": "club"
         },
         "directive": "relation"
       },
@@ -932,7 +1138,7 @@
         "path": {
           "tag": "Field",
           "model": "Teacher",
-          "field": "Club"
+          "field": "club"
         },
         "directive": "relation"
       },
@@ -942,7 +1148,53 @@
     {
       "tag": "CreateField",
       "model": "Teacher",
-      "field": "Technique",
+      "field": "user",
+      "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Teacher",
+          "field": "user"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Teacher",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Teacher",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Teacher",
+      "field": "techniques",
       "type": "Technique",
       "arity": "List"
     },
@@ -1051,6 +1303,13 @@
     {
       "tag": "CreateField",
       "model": "Technique",
+      "field": "userId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Technique",
       "field": "createdAt",
       "type": "DateTime",
       "arity": "Required"
@@ -1088,9 +1347,34 @@
       "arity": "Required"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Technique",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Technique",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
+    },
+    {
       "tag": "CreateField",
       "model": "Technique",
-      "field": "Guard",
+      "field": "guard",
       "type": "Guard",
       "arity": "Required"
     },
@@ -1100,7 +1384,7 @@
         "path": {
           "tag": "Field",
           "model": "Technique",
-          "field": "Guard"
+          "field": "guard"
         },
         "directive": "relation"
       }
@@ -1112,7 +1396,7 @@
         "path": {
           "tag": "Field",
           "model": "Technique",
-          "field": "Guard"
+          "field": "guard"
         },
         "directive": "relation"
       },
@@ -1126,7 +1410,7 @@
         "path": {
           "tag": "Field",
           "model": "Technique",
-          "field": "Guard"
+          "field": "guard"
         },
         "directive": "relation"
       },
@@ -1136,7 +1420,7 @@
     {
       "tag": "CreateField",
       "model": "Technique",
-      "field": "Position",
+      "field": "position",
       "type": "Position",
       "arity": "Required"
     },
@@ -1146,7 +1430,7 @@
         "path": {
           "tag": "Field",
           "model": "Technique",
-          "field": "Position"
+          "field": "position"
         },
         "directive": "relation"
       }
@@ -1158,7 +1442,7 @@
         "path": {
           "tag": "Field",
           "model": "Technique",
-          "field": "Position"
+          "field": "position"
         },
         "directive": "relation"
       },
@@ -1172,7 +1456,7 @@
         "path": {
           "tag": "Field",
           "model": "Technique",
-          "field": "Position"
+          "field": "position"
         },
         "directive": "relation"
       },
@@ -1182,7 +1466,7 @@
     {
       "tag": "CreateField",
       "model": "Technique",
-      "field": "Submission",
+      "field": "submission",
       "type": "Submission",
       "arity": "Required"
     },
@@ -1192,7 +1476,7 @@
         "path": {
           "tag": "Field",
           "model": "Technique",
-          "field": "Submission"
+          "field": "submission"
         },
         "directive": "relation"
       }
@@ -1204,7 +1488,7 @@
         "path": {
           "tag": "Field",
           "model": "Technique",
-          "field": "Submission"
+          "field": "submission"
         },
         "directive": "relation"
       },
@@ -1218,7 +1502,7 @@
         "path": {
           "tag": "Field",
           "model": "Technique",
-          "field": "Submission"
+          "field": "submission"
         },
         "directive": "relation"
       },
@@ -1228,7 +1512,7 @@
     {
       "tag": "CreateField",
       "model": "Technique",
-      "field": "Teacher",
+      "field": "teacher",
       "type": "Teacher",
       "arity": "Required"
     },
@@ -1238,7 +1522,7 @@
         "path": {
           "tag": "Field",
           "model": "Technique",
-          "field": "Teacher"
+          "field": "teacher"
         },
         "directive": "relation"
       }
@@ -1250,7 +1534,7 @@
         "path": {
           "tag": "Field",
           "model": "Technique",
-          "field": "Teacher"
+          "field": "teacher"
         },
         "directive": "relation"
       },
@@ -1264,7 +1548,7 @@
         "path": {
           "tag": "Field",
           "model": "Technique",
-          "field": "Teacher"
+          "field": "teacher"
         },
         "directive": "relation"
       },
@@ -1274,14 +1558,60 @@
     {
       "tag": "CreateField",
       "model": "Technique",
-      "field": "TechniqueStep",
+      "field": "user",
+      "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Technique",
+          "field": "user"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Technique",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Technique",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Technique",
+      "field": "steps",
       "type": "TechniqueStep",
       "arity": "List"
     },
     {
       "tag": "CreateField",
       "model": "Technique",
-      "field": "Video",
+      "field": "videos",
       "type": "Video",
       "arity": "List"
     },
@@ -1480,9 +1810,34 @@
       "arity": "Required"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "TechniqueStep",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "TechniqueStep",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
+    },
+    {
       "tag": "CreateField",
       "model": "TechniqueStep",
-      "field": "Technique",
+      "field": "technique",
       "type": "Technique",
       "arity": "Required"
     },
@@ -1492,7 +1847,7 @@
         "path": {
           "tag": "Field",
           "model": "TechniqueStep",
-          "field": "Technique"
+          "field": "technique"
         },
         "directive": "relation"
       }
@@ -1504,7 +1859,7 @@
         "path": {
           "tag": "Field",
           "model": "TechniqueStep",
-          "field": "Technique"
+          "field": "technique"
         },
         "directive": "relation"
       },
@@ -1518,7 +1873,7 @@
         "path": {
           "tag": "Field",
           "model": "TechniqueStep",
-          "field": "Technique"
+          "field": "technique"
         },
         "directive": "relation"
       },
@@ -1528,7 +1883,7 @@
     {
       "tag": "CreateField",
       "model": "TechniqueStep",
-      "field": "User",
+      "field": "user",
       "type": "User",
       "arity": "Required"
     },
@@ -1538,7 +1893,7 @@
         "path": {
           "tag": "Field",
           "model": "TechniqueStep",
-          "field": "User"
+          "field": "user"
         },
         "directive": "relation"
       }
@@ -1550,7 +1905,7 @@
         "path": {
           "tag": "Field",
           "model": "TechniqueStep",
-          "field": "User"
+          "field": "user"
         },
         "directive": "relation"
       },
@@ -1564,7 +1919,7 @@
         "path": {
           "tag": "Field",
           "model": "TechniqueStep",
-          "field": "User"
+          "field": "user"
         },
         "directive": "relation"
       },
@@ -1789,9 +2144,9 @@
     {
       "tag": "CreateField",
       "model": "User",
-      "field": "Club",
-      "type": "Club",
-      "arity": "List"
+      "field": "updatedAt",
+      "type": "DateTime",
+      "arity": "Required"
     },
     {
       "tag": "CreateDirective",
@@ -1799,9 +2154,9 @@
         "path": {
           "tag": "Field",
           "model": "User",
-          "field": "Club"
+          "field": "updatedAt"
         },
-        "directive": "relation"
+        "directive": "default"
       }
     },
     {
@@ -1811,39 +2166,67 @@
         "path": {
           "tag": "Field",
           "model": "User",
-          "field": "Club"
+          "field": "updatedAt"
         },
-        "directive": "relation"
+        "directive": "default"
       },
-      "argument": "references",
-      "value": "[id]"
+      "argument": "",
+      "value": "now()"
     },
     {
       "tag": "CreateField",
       "model": "User",
-      "field": "Guard",
+      "field": "guards",
       "type": "Guard",
       "arity": "List"
     },
     {
       "tag": "CreateField",
       "model": "User",
-      "field": "Submission",
+      "field": "submissions",
       "type": "Submission",
       "arity": "List"
     },
     {
       "tag": "CreateField",
       "model": "User",
-      "field": "TechniqueStep",
+      "field": "techniqueSteps",
       "type": "TechniqueStep",
       "arity": "List"
     },
     {
       "tag": "CreateField",
       "model": "User",
-      "field": "Video",
+      "field": "videos",
       "type": "Video",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "clubs",
+      "type": "Club",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "locations",
+      "type": "Location",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "teachers",
+      "type": "Teacher",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "techniques",
+      "type": "Technique",
       "arity": "List"
     },
     {
@@ -1961,9 +2344,34 @@
       "arity": "Required"
     },
     {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Video",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Video",
+          "field": "updatedAt"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
+    },
+    {
       "tag": "CreateField",
       "model": "Video",
-      "field": "User",
+      "field": "user",
       "type": "User",
       "arity": "Required"
     },
@@ -1973,7 +2381,7 @@
         "path": {
           "tag": "Field",
           "model": "Video",
-          "field": "User"
+          "field": "user"
         },
         "directive": "relation"
       }
@@ -1985,7 +2393,7 @@
         "path": {
           "tag": "Field",
           "model": "Video",
-          "field": "User"
+          "field": "user"
         },
         "directive": "relation"
       },
@@ -1999,7 +2407,7 @@
         "path": {
           "tag": "Field",
           "model": "Video",
-          "field": "User"
+          "field": "user"
         },
         "directive": "relation"
       },
@@ -2009,7 +2417,7 @@
     {
       "tag": "CreateField",
       "model": "Video",
-      "field": "Technique",
+      "field": "techniques",
       "type": "Technique",
       "arity": "List"
     },
