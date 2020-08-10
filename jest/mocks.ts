@@ -5,6 +5,9 @@ export const mockService = {
   create: jest.fn().mockImplementation(() => Promise.resolve(mockResults)),
   update: jest.fn().mockImplementation(() => Promise.resolve(mockResults)),
   delete: jest.fn().mockImplementation(() => Promise.resolve(mockResults)),
+  findOneByEmailWithPassword: jest
+    .fn()
+    .mockImplementation(() => Promise.resolve(mockResults)),
 };
 export const mockResponse = {
   status: jest.fn().mockReturnValue(200),
