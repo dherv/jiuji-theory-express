@@ -1,7 +1,6 @@
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["connectOrCreate"]
-
 }
 
 datasource mysql {
@@ -56,7 +55,6 @@ model Submission {
   id         Int         @default(autoincrement()) @id
   name       String
   userId     Int
-  default    Boolean
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @default(now())
   user       User        @relation(fields: [userId], references: [id])

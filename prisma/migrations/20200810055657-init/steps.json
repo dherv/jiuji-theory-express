@@ -826,13 +826,6 @@
     {
       "tag": "CreateField",
       "model": "Submission",
-      "field": "default",
-      "type": "Boolean",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Submission",
       "field": "createdAt",
       "type": "DateTime",
       "arity": "Required"
