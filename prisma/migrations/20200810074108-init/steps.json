@@ -357,13 +357,6 @@
     {
       "tag": "CreateField",
       "model": "Guard",
-      "field": "default",
-      "type": "Boolean",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Guard",
       "field": "createdAt",
       "type": "DateTime",
       "arity": "Required"
