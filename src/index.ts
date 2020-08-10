@@ -12,6 +12,7 @@ import clubsRouter from './clubs/clubs.router';
 import guardsRouter from './guards/guards.router';
 import submissionsRouter from './submissions/submissions.router';
 import teachersRouter from './teachers/teachers.router';
+import techniquesRouter from './techniques/techniques.router';
 import { usersRouter } from './users/users.router';
 
 dotenv.config();
@@ -64,6 +65,11 @@ app.use(
   '/v1/guards',
   passport.authenticate('jwt', { session: false }),
   guardsRouter
+);
+app.use(
+  '/v1/techniques',
+  passport.authenticate('jwt', { session: false }),
+  techniquesRouter
 );
 
 // The error handler must be before any other error middleware and after all controllers
