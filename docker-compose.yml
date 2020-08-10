@@ -13,6 +13,8 @@ services:
       - 3000:3000
     depends_on:
       - database
+    restart: unless-stopped
+    tty: true
     environment:
       - 'DB_PORT=3306'
       - 'DB_HOST=database'
