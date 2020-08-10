@@ -8,6 +8,7 @@ import * as Sentry from '@sentry/node';
 import loggerStream from '../config/winston';
 import { authRouter } from './auth/auth.router';
 import passport from './auth/passport.strategies';
+import clubsRouter from './clubs/clubs.router';
 import { usersRouter } from './users/users.router';
 
 dotenv.config();
@@ -41,6 +42,11 @@ app.use(passport.initialize());
 // API
 app.use('/v1/users', usersRouter);
 app.use('/v1/auth', authRouter);
+app.use(
+  '/v1/clubs',
+  passport.authenticate('jwt', { session: false }),
+  clubsRouter
+);
 
 // The error handler must be before any other error middleware and after all controllers
 app.use(Sentry.Handlers.errorHandler());

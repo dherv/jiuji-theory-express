@@ -12,14 +12,10 @@ export const mockResponse = {
 } as any;
 export const mockRequest = {
   params: { id: 1 },
-  body: {},
+  body: { body: 'body test' },
+  user: { username: 'user test' },
 } as any;
 export const mockNext = {} as any;
-
-export const mockArgs = {
-  body: {},
-  id: 1,
-};
 
 export const mockRepository = {
   findOne: jest.fn().mockImplementation(() => ({ data: 'mockRepository' })),

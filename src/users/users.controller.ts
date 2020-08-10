@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { IController, IService } from '../../types/interfaces';
+import { IController, IUserService } from '../../types/interfaces';
 
-const usersControllers = (usersService: IService): IController => {
+const usersControllers = (usersService: IUserService): IController => {
   return {
     findAll: async (_: Request, res: Response) => {
       try {

@@ -12,5 +12,4 @@ export interface UpdateUserDto {
   name: string;
   belt: Belt;
   club: { id: number };
-  location: { id: number };
 }

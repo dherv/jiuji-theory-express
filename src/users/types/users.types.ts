@@ -8,3 +8,8 @@ export type User = {
 };
 
 export type Belt = 'WHITE' | 'BLUE' | 'PURPLE' | 'BROWN' | 'BLACK';
+
+export type ReqUser = {
+  username: string;
+  sub: number;
+};
