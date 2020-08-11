@@ -14,6 +14,7 @@ import submissionsRouter from './submissions/submissions.router';
 import teachersRouter from './teachers/teachers.router';
 import techniquesRouter from './techniques/techniques.router';
 import { usersRouter } from './users/users.router';
+import videosRouter from './videos/videos.router';
 
 dotenv.config();
 Sentry.init({
@@ -70,6 +71,11 @@ app.use(
   '/v1/techniques',
   passport.authenticate('jwt', { session: false }),
   techniquesRouter
+);
+app.use(
+  '/v1/videos',
+  passport.authenticate('jwt', { session: false }),
+  videosRouter
 );
 
 // The error handler must be before any other error middleware and after all controllers

@@ -1,6 +1,7 @@
 interface BaseTechniqueDto {
   name: string;
   steps: { text: string; order: number }[];
+  videos: { id: number }[];
   guard: { id: number };
   position: { id: number };
   submission: { id: number };

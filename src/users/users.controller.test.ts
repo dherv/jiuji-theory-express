@@ -1,6 +1,17 @@
-import { mockRequest, mockResponse, mockService } from '../../jest/mocks';
+import {
+  mockRequest,
+  mockResponse,
+  mockResults,
+  mockService as baseMockService,
+} from '../../jest/mocks';
 import usersController from './users.controller';
 
+const mockService = {
+  ...baseMockService,
+  findOneByEmailWithPassword: jest
+    .fn()
+    .mockImplementation(() => Promise.resolve(mockResults)),
+};
 afterEach(() => jest.clearAllMocks());
 
 test('findAll() should return all', async () => {

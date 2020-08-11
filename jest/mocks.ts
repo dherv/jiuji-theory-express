@@ -5,9 +5,6 @@ export const mockService = {
   create: jest.fn().mockImplementation(() => Promise.resolve(mockResults)),
   update: jest.fn().mockImplementation(() => Promise.resolve(mockResults)),
   delete: jest.fn().mockImplementation(() => Promise.resolve(mockResults)),
-  findOneByEmailWithPassword: jest
-    .fn()
-    .mockImplementation(() => Promise.resolve(mockResults)),
 };
 export const mockResponse = {
   status: jest.fn().mockReturnValue(200),
@@ -26,4 +23,10 @@ export const mockRepository = {
   create: jest.fn().mockImplementation(() => ({ data: 'mockRepository' })),
   update: jest.fn().mockImplementation(() => ({ data: 'mockRepository' })),
   delete: jest.fn().mockImplementation(() => ({ data: 'mockRepository' })),
+};
+
+export const mockVideo = {
+  youtubeId: 'youtubeId',
+  title: 'Video title',
+  description: 'video description',
 };

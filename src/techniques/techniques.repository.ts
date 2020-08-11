@@ -23,7 +23,15 @@ const techniquesRepository = (): IRepository => {
       body: CreateTechniqueDto,
       user: ReqUser
     ): Promise<Technique> => {
-      const { name, guard, position, submission, teacher, steps } = body;
+      const {
+        name,
+        guard,
+        position,
+        submission,
+        teacher,
+        steps,
+        videos,
+      } = body;
 
       const createSteps = steps
         .sort((a, b) => a.order - b.order)
@@ -40,7 +48,7 @@ const techniquesRepository = (): IRepository => {
             connect: { id: user.sub },
           },
           videos: {
-            connect: [{ id: 1 }, { id: 2 }],
+            connect: [...videos],
           },
           steps: {
             create: [...createSteps],
@@ -56,7 +64,15 @@ const techniquesRepository = (): IRepository => {
       id: number,
       user: ReqUser
     ): Promise<Partial<Technique>> => {
-      const { name, guard, position, submission, teacher, steps } = body;
+      const {
+        name,
+        guard,
+        position,
+        submission,
+        teacher,
+        steps,
+        videos,
+      } = body;
 
       const upsertSteps = steps
         .filter((step) => !step.destroy)
@@ -97,7 +113,7 @@ const techniquesRepository = (): IRepository => {
             connect: { id: user.sub },
           },
           videos: {
-            connect: [{ id: 1 }, { id: 2 }],
+            connect: [...videos],
           },
           steps: {
             upsert: [...upsertSteps],

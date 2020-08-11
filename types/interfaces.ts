@@ -1,5 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 import { ReqUser } from '../src/users/types/users.types';
+import {
+  VideosSearchBodyDto,
+  VideosSearchResultDto,
+} from '../src/videos/dto/videos.dto';
 
 export interface IController {
   findAll: (
@@ -54,6 +58,16 @@ export interface IUserRepository extends IRepository {
   create: (body: any) => Promise<any>;
   update: (body: any, id: number) => Promise<any>;
   findOneByEmailWithPassword: (email: string) => Promise<any>;
+}
+export interface IVideoService extends IService {
+  search: (body: VideosSearchBodyDto) => Promise<VideosSearchResultDto[]>;
+}
+export interface IVideoController extends IController {
+  search: (
+    req: Request,
+    res: Response,
+    next?: NextFunction
+  ) => Promise<Response<any>>;
 }
 export interface IBCryptService {
   hash: (password: string | undefined) => Promise<string>;
