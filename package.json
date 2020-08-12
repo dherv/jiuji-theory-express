@@ -19,7 +19,7 @@
     "prettier:write": "prettier --write src/**/*.ts",
     "lint": "tsc --noEmit && yarn eslint . --ext .js,.jsx,.ts,.tsx --quiet --fix",
     "test": "jest --watchAll --passWithNoTests",
-    "test:ci": "jest --passWithNoTests",
+    "test:ci": "jest --passWithNoTests --maxWorkers 2",
     "cypress": "cypress open"
   },
   "dependencies": {
