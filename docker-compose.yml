@@ -1,6 +1,7 @@
 version: '3.7'
 services:
   app:
+    container_name: jiuji_theory_server
     build:
       context: .
       dockerfile: Dockerfile
@@ -20,6 +21,7 @@ services:
       - 'DB_HOST=database'
   # The Database
   database:
+    container_name: jiuji_theory_database
     image: mysql:latest
     command: --default-authentication-plugin=mysql_native_password
     restart: always
