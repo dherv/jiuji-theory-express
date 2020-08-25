@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { IRepository } from '../../types/interfaces';
 import { ReqUser } from '../users/types/users.types';
 import { CreateTechniqueDto, UpdateTechniqueDto } from './dto/techniques.dto';
-import { Technique } from './types/techniques.types';
+import { Step, Technique } from './types/techniques.types';
 
 const prisma = new PrismaClient();
 
@@ -35,7 +35,10 @@ const techniquesRepository = (): IRepository => {
 
       const createSteps = steps
         .sort((a, b) => a.order - b.order)
-        .map((step) => ({ ...step, user: { connect: { id: user.sub } } }));
+        .map((step: Step) => ({
+          ...step,
+          user: { connect: { id: user.sub } },
+        }));
 
       return await prisma.technique.create({
         data: {
@@ -128,7 +131,7 @@ const techniquesRepository = (): IRepository => {
     delete: async (id: number): Promise<Technique> => {
       const steps = (
         await prisma.technique.findOne({ where: { id } }).steps()
-      ).map((step) => ({ id: step.id }));
+      ).map((step: Step) => ({ id: step.id }));
       await prisma.technique.update({
         where: { id },
         data: {
