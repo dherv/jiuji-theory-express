@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { ReqUser } from '../src/users/types/users.types';
 import {
   VideosSearchBodyDto,
-  VideosSearchResultDto,
+  VideoYoutubeDto,
 } from '../src/videos/dto/videos.dto';
 
 export interface IController {
@@ -60,7 +60,7 @@ export interface IUserRepository extends IRepository {
   findOneByEmailWithPassword: (email: string) => Promise<any>;
 }
 export interface IVideoService extends IService {
-  search: (body: VideosSearchBodyDto) => Promise<VideosSearchResultDto[]>;
+  search: (body: VideosSearchBodyDto) => Promise<VideoYoutubeDto[]>;
 }
 export interface IVideoController extends IController {
   search: (
