@@ -10,13 +10,25 @@ const techniquesRepository = (): IRepository => {
   return {
     findAll: async (): Promise<Technique[]> => {
       return await prisma.technique.findMany({
-        include: { steps: true },
+        include: {
+          steps: true,
+          submission: true,
+          guard: true,
+          teacher: true,
+          position: true,
+        },
       });
     },
     findOne: async (id: number): Promise<Technique | null> => {
       return await prisma.technique.findOne({
         where: { id },
-        include: { steps: true },
+        include: {
+          steps: true,
+          submission: true,
+          guard: true,
+          teacher: true,
+          position: true,
+        },
       });
     },
     create: async (
