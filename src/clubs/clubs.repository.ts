@@ -12,7 +12,7 @@ const clubsRepository = (): IRepository => {
       return await prisma.club.findMany();
     },
     findOne: async (id: number): Promise<Club | null> => {
-      return await prisma.club.findOne({
+      return await prisma.club.findUnique({
         where: { id },
       });
     },
@@ -25,13 +25,13 @@ const clubsRepository = (): IRepository => {
             connect: { id: user.sub },
           },
           location: {
-            connectOrCreate: {
-              where: { id: location.id },
-              create: {
-                name: location.name,
-                user: {
-                  connect: { id: user.sub },
-                },
+            connect: {
+              id: location.id,
+            },
+            create: {
+              name: location.name,
+              user: {
+                connect: { id: user.sub },
               },
             },
           },
@@ -52,11 +52,13 @@ const clubsRepository = (): IRepository => {
             connect: { id: user.sub },
           },
           location: {
-            connectOrCreate: {
-              where: { id: location.id },
-              create: {
-                name: location.name,
-                user: { connect: { id: user.sub } },
+            connect: {
+              id: location.id,
+            },
+            create: {
+              name: location.name,
+              user: {
+                connect: { id: user.sub },
               },
             },
           },

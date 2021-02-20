@@ -12,7 +12,7 @@ const guardsRepository = (): IRepository => {
       return await prisma.guard.findMany();
     },
     findOne: async (id: number): Promise<Guard | null> => {
-      return await prisma.guard.findOne({
+      return await prisma.guard.findUnique({
         where: { id },
       });
     },

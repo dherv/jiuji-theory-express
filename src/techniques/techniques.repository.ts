@@ -20,7 +20,7 @@ const techniquesRepository = (): IRepository => {
       });
     },
     findOne: async (id: number): Promise<Technique | null> => {
-      return await prisma.technique.findOne({
+      return await prisma.technique.findUnique({
         where: { id },
         include: {
           steps: true,
@@ -142,7 +142,7 @@ const techniquesRepository = (): IRepository => {
     },
     delete: async (id: number): Promise<Technique> => {
       const steps = (
-        await prisma.technique.findOne({ where: { id } }).steps()
+        await prisma.technique.findUnique({ where: { id } }).steps()
       ).map((step: Step) => ({ id: step.id }));
       await prisma.technique.update({
         where: { id },

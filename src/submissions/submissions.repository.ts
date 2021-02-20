@@ -12,7 +12,7 @@ const submissionsRepository = (): IRepository => {
       return await prisma.submission.findMany();
     },
     findOne: async (id: number): Promise<Submission | null> => {
-      return await prisma.submission.findOne({
+      return await prisma.submission.findUnique({
         where: { id },
       });
     },

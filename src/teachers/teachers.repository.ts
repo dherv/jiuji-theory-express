@@ -12,7 +12,7 @@ const teachersRepository = (): IRepository => {
       return await prisma.teacher.findMany();
     },
     findOne: async (id: number): Promise<Teacher | null> => {
-      return await prisma.teacher.findOne({
+      return await prisma.teacher.findUnique({
         where: { id },
       });
     },

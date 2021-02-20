@@ -19,13 +19,13 @@ const usersRepository = (bCryptService: IBCryptService): IUserRepository => {
       return await prisma.user.findMany({ select: { ...select } });
     },
     findOne: async (id: number): Promise<User | null> => {
-      return await prisma.user.findOne({
+      return await prisma.user.findUnique({
         where: { id },
         select: { ...select },
       });
     },
     findOneByEmailWithPassword: async (email: string): Promise<User | null> => {
-      return await prisma.user.findOne({
+      return await prisma.user.findUnique({
         where: { email },
         select: {
           id: true,

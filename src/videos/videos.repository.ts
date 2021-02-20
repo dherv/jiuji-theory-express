@@ -12,7 +12,7 @@ const videosRepository = (): IRepository => {
       return await prisma.video.findMany();
     },
     findOne: async (id: number): Promise<Video | null> => {
-      return await prisma.video.findOne({
+      return await prisma.video.findUnique({
         where: { id },
       });
     },
