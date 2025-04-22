@@ -68,16 +68,16 @@ const videosController = (videosService: IVideoService): IVideoController => {
         return res.json({ error });
       }
     },
-    search: async (req: Request, res: Response) => {
-      try {
-        const { body } = req;
-        const videos = await videosService.search(body);
-        return res.json({ videos });
-      } catch (error) {
-        console.error(error);
-        return res.json({ error });
-      }
-    },
+    // search: async (req: Request, res: Response) => {
+    //   try {
+    //     const { body } = req;
+    //     // const videos = await videosService.search(body);
+    //     // return res.json({ videos });
+    //   } catch (error) {
+    //     console.error(error);
+    //     return res.json({ error });
+    //   }
+    // },
   };
 };
 

@@ -9,26 +9,26 @@ import {
 } from './dto/videos.dto';
 import { Video } from './types/videos.types';
 
-export const searchYoutube = async (
-  body: VideosSearchBodyDto
-): Promise<GaxiosPromise<youtube_v3.Schema$SearchListResponse>> => {
-  const { q, maxResults } = body;
-  const youtube = google.youtube({
-    version: 'v3',
-    auth: process.env.GOOGLE_API_YOUTUBE_KEY,
-  });
-  console.log('CALLED');
-  try {
-    return await youtube.search.list({
-      q,
-      part: ['snippet'],
-      maxResults,
-    });
-  } catch (error) {
-    console.error('Execute error', error);
-    return error;
-  }
-};
+// export const searchYoutube = async (
+//   body: VideosSearchBodyDto
+// ): Promise<GaxiosPromise<youtube_v3.Schema$SearchListResponse>> => {
+//   const { q, maxResults } = body;
+//   const youtube = google.youtube({
+//     version: 'v3',
+//     auth: process.env.GOOGLE_API_YOUTUBE_KEY,
+//   });
+//   console.log('CALLED');
+//   try {
+//     return await youtube.search.list({
+//       q,
+//       part: ['snippet'],
+//       maxResults,
+//     });
+//   } catch (error) {
+//     console.error('Execute error', error);
+//     return error;
+//   }
+// };
 
 const videosService = (videosRepository: IRepository): IVideoService => {
   return {
@@ -51,18 +51,18 @@ const videosService = (videosRepository: IRepository): IVideoService => {
     delete: async (id: number): Promise<void> => {
       return await videosRepository.delete(id);
     },
-    search: async (body: VideosSearchBodyDto): Promise<VideoYoutubeDto[]> => {
-      const response = await searchYoutube(body);
-      let youtubeVideos = [] as VideoYoutubeDto[];
-      if (response.data.items) {
-        youtubeVideos = response.data.items.map((video: any) => ({
-          youtubeId: video.id.videoId,
-          title: video.snippet.title,
-          description: video.snippet.description,
-        }));
-      }
-      return youtubeVideos;
-    },
+    // search: async (body: VideosSearchBodyDto): Promise<VideoYoutubeDto[]> => {
+    //   const response = await searchYoutube(body);
+    //   let youtubeVideos = [] as VideoYoutubeDto[];
+    //   if (response.data.items) {
+    //     youtubeVideos = response.data.items.map((video: any) => ({
+    //       youtubeId: video.id.videoId,
+    //       title: video.snippet.title,
+    //       description: video.snippet.description,
+    //     }));
+    //   }
+    //   return youtubeVideos;
+    // },
   };
 };
 

@@ -13,6 +13,6 @@ videosRouter.get('/:id', videosController.findOne);
 videosRouter.post('/', videosController.create);
 videosRouter.put('/:id', videosController.update);
 videosRouter.delete('/:id', videosController.delete);
-videosRouter.post('/search', videosController.search);
+// videosRouter.post('/search', videosController.search);
 
 export default videosRouter;

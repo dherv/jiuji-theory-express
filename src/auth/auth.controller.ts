@@ -26,7 +26,7 @@ const authController = (
       }
     },
     login: async (req: Request, res: Response, next: NextFunction) => {
-      passport.authenticate('login', async (err, user) => {
+      passport.authenticate('login', async (err: any, user: any) => {
         try {
           if (err || !user) {
             const error = new Error('An Error occurred');

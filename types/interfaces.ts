@@ -60,14 +60,14 @@ export interface IUserRepository extends IRepository {
   findOneByEmailWithPassword: (email: string) => Promise<any>;
 }
 export interface IVideoService extends IService {
-  search: (body: VideosSearchBodyDto) => Promise<VideoYoutubeDto[]>;
+  // search: (body: VideosSearchBodyDto) => Promise<VideoYoutubeDto[]>;
 }
 export interface IVideoController extends IController {
-  search: (
-    req: Request,
-    res: Response,
-    next?: NextFunction
-  ) => Promise<Response<any>>;
+  // search: (
+  //   req: Request,
+  //   res: Response,
+  //   next?: NextFunction
+  // ) => Promise<Response<any>>;
 }
 export interface IBCryptService {
   hash: (password: string | undefined) => Promise<string>;
